@@ -1,10 +1,19 @@
 <?php
+    $result_count = 3;
     $data_source_list = "[['20000200', '', '21.042455', '105.824538'], ['20000201', '', '21.042590', '105.824752'], ['20000202', '', '21.042919', '105.824979'], ['20000203', '', '21.064406', '105.830914'], ['20000204', '', '21.064508', '105.834458'], ['20000203', '', '21.066222', '105.836829'], ['20000203', '', '21.067934', '105.836561']]";
-    if(!empty($_POST['rent_price'])) {
+    if(!empty($_POST)) {
+
+    }
+    if(!empty($_POST['rent_price_1'])) {
         $data_source_list = "[['20000200', '', '21.042455', '105.824538']]";
     }
 
-    if(!empty($_POST['age'])) {
+    if(!empty($_POST['rent_price_2'])) {
+        $data_source_list = "[['20000200', '', '21.042455', '105.824538'], ['20000203', '', '21.067934', '105.836561']]";
+    }
+
+    if(!empty($_POST['yearago'])) {
+
         $data_source_list = "[['20000201', '', '21.042590', '105.824752'], ['20000202', '', '21.042919', '105.824979']]";
     }
 ?>
@@ -41,29 +50,6 @@
     <!-------------------------->
     <script src="assets/js/jquery-1.12.4.min.js"></script>
     <script src="assets/js/jquery-ui.min.js"></script>
-    <script src="assets/js/scrolltopcontrol.js"></script>
-    <script src="assets/js/slick.min.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/functions.js"></script>
-    <script src="assets/js/height.js"></script>
-    <script src="assets/js/jquery-fixHeightSimple.js"></script>
-    <script src="assets/js/jquery.biggerlink.min.js"></script>
-    <script src="assets/js/fix.js"></script>
-    <script src="assets/js/modal_controller.js"></script>
-    <script src="assets/js/pvlib_XmlHtReq.js"></script>
-
-    <script type="text/javascript">
-        $(function () {
-            $('div.row div.company-content').biggerlink();
-        });
-
-        $(function () {
-            $(".height-box").fixHeightSimple({
-                column: 3
-            });
-        });
-
-    </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?libraries=places&language=vn&region=jp&key=AIzaSyAp74vTnoq1evX8zDSTFnvvRt6s4FgO6V8"></script>
 
@@ -290,23 +276,6 @@
             var form_srch_flg = document.form_srchbox2.form_srch_flg.value;
             var sch_chiku_dt = document.form_srchbox2.search_chiku_date.value;
             var sch_bld_kind = document.form_srchbox2.search_build_kind.value;
-            /*
-                    var sch_yachin1   = null;
-                    var sch_yachin2   = null;
-                    var sch_madori    = null;
-                    var form_srch_flg = null;
-                    var sch_chiku_dt  = null;
-                    var sch_bld_kind  = null;
-
-            */
-
-//		if(form_srch_flg=='1'){
-//			if( map_nelat!=0 && map_swlat!=0 && map_nelng!=0 && map_swlng!=0 ){
-//				location.href = "https://www.kazusaya.co.jp/chintai/map_search/?nelat="+map_nelat+"&nelng="+map_nelng+"&swlat="+map_swlat+"&swlng="+map_swlng+"&clat="+map_clat+"&clng="+map_clng+"&z="+map_zoom+"&y1="+sch_yachin1+"&y2="+sch_yachin2+"&md="+sch_madori;
-//			}else if(sch_yachin1!="" || sch_yachin2!="" || sch_madori!=""){
-//				location.href = "https://www.kazusaya.co.jp/chintai/map_search/?nelat="+map_nelat+"&nelng="+map_nelng+"&swlat="+map_swlat+"&swlng="+map_swlng+"&clat="+map_clat+"&clng="+map_clng+"&z="+map_zoom+"&y1="+sch_yachin1+"&y2="+sch_yachin2+"&md="+sch_madori;
-//			}
-//		}
 
             if (form_srch_flg == '1') {
                 //検索キー欄での検索ボタン押下時のみ処理させたい
@@ -372,7 +341,7 @@
                         <ul class="search-map-sub-menu__list-select-primary">
                             <li>
                                 <div class="search-map-sub-menu__select-text">
-                                    <select class="form-map_price" name="rent_price" id="search6">
+                                    <select class="form-map_price" name="rent_price_1" id="search6">
                                         <option value="30000" selected="selected">30000円</option>
                                         <option value="">--下限なし--</option>
                                         <option value="20000">20000円</option>
@@ -391,7 +360,7 @@
                             <li>
                                 <div class="search-map-sub-menu__select-text">
 
-                                    <select class="form-map_price find" name="age" id="search7">
+                                    <select class="form-map_price find" name="rent_price_2" id="search7">
                                         <option value="">--上限なし--</option>
                                         <option value="20000">20000円</option>
                                         <option value="30000">30000円</option>
@@ -469,11 +438,10 @@
 
 <div class="search-conditions-table__show">
     <ul class="row">
-        <li class="col-md-4 col-sm-4 rent-tenant-office-list__show-text">該当物件<span>1370</span>件</li>
+        <li class="col-md-4 col-sm-4 rent-tenant-office-list__show-text">該当物件<span><?php echo $result_count; ?></span>件</li>
     </ul>
 </div>
 
 <input class="form-control" type="hidden" id="geocomplete" name="search1" placeholder="住所を入力">
-<!--■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ FOOTER -->
 </body>
 </html>
